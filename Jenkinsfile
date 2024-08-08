@@ -8,6 +8,7 @@ pipeline {
     }
 	
     environment {
+        JAVA_HOME = '/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/'
         SNAP_REPO = 'vprofile-snapshot'
         NEXUS_USER = 'admin'
         NEXUS_PASS = 'admin'
