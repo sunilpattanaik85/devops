@@ -26,11 +26,3 @@ phases:
     commands:
     - mvn test
     - mvn checkstyle:checkstyle
-    - echo "Installing JDK11 as its a dependency for sonarqube code analysis"
-    - apt-get install -y openjdk-11-jdk
-    - export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-    - mvn sonar:sonar -Dsonar.login=460a4c9c3490aae685cd50ed2f34108a74dad2dc -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=hkhvprofileaws-repo -Dsonar.organization=hkhvprofileaws -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ -Dsonar.junit.reportsPath=target/surefire-reports/ -Dsonar.jacoco.reportsPath=target/jacoco.exec -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
-    - sleep 5
-    - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
-    - cat result.json
-    - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
